@@ -59,10 +59,14 @@ def add_plan():
     if not request.get_json():
         abort(400, description="Not a JSON")
     attr = ["NumberPeople", "NumberMeals", "PrixPersonne", "duration"]
-    for key in attr:
-        if key not in request.get_json():
-            abort(400, description="Missing args")
+    ignore = ['id', 'created_at', 'updated_at']
     data = request.get_json()
+    for key in attr:
+        if key not in data:
+            abort(400, description="Missing args")
+    for key in data.keys():
+        if key in ignore:
+            abort(400, description="Ignored key passed")
     plan = Plan(**data)
     plan.save()
     return make_response(jsonify(plan.to_dict()), 201)

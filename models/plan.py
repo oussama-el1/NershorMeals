@@ -10,5 +10,4 @@ class Plan(BaseData, Base):
     PrixPersonne = Column(Float, nullable=False)
     duration = Column(Integer, nullable=False)
     
-    # Define backref for orders associated with a plan
     users = relationship("User", secondary="orders", overlaps="plans")

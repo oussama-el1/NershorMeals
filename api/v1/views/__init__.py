@@ -13,3 +13,5 @@ def authenticate(username, password):
 
 from api.v1.views.status import *
 from api.v1.views.plans import *
+from api.v1.views.ingredients import *
+from api.v1.views.meals import *
