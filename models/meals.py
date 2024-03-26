@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 from models.base import BaseData, Base
-from sqlalchemy import Column, Integer, String, Float
+from sqlalchemy import Column, Integer, String
 from sqlalchemy.orm import relationship
 
 
@@ -9,7 +9,7 @@ class Meal(BaseData, Base):
     __tablename__ = 'meals'
     
     name = Column(String(255), nullable=False)
-    prix = Column(Float, nullable=False)
+    """ prix = Column(Float, nullable=False) """
     protein = Column(Integer, nullable=True)
     calories = Column(Integer, nullable=True)
     Carbs = Column(Integer, nullable=True)
@@ -17,3 +17,4 @@ class Meal(BaseData, Base):
     
     orders = relationship("Order", secondary="order_meals", overlaps="meals")
     ingredients = relationship("Ingredient", secondary="meal_ingredients", overlaps="meals")
+    preference = relationship("Preference", secondary="meal_preferences", overlaps="meals")

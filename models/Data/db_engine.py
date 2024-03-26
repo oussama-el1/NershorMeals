@@ -15,6 +15,10 @@ from models.ingredients import Ingredient
 from models.address import Address
 from models.mealIngredient import MealIngredient
 from models.OrderMeals import OrderMeals
+from models.customization import CustomizationOptions
+from models.order_meal_cust import OrderMealCustomization
+from models.Preference import Preference
+from models.mealPreference import MealPreference
 
 
 classes = {"User": User, "Plan": Plan, "Order": Order, "Meal": Meal, "Ingredient": Ingredient, "Address": Address}
@@ -26,10 +30,14 @@ table_order = [
     Base.metadata.tables['users'],
     Base.metadata.tables['plans'],
     Base.metadata.tables['meals'],
+    Base.metadata.tables['preferences'],
     Base.metadata.tables['orders'],
     Base.metadata.tables['ingredients'],
     Base.metadata.tables['meal_ingredients'],
-    Base.metadata.tables['order_meals']
+    Base.metadata.tables['order_meals'],
+    Base.metadata.tables['customization_options'],
+    Base.metadata.tables['order_meal_customization'],
+    Base.metadata.tables['meal_preferences']
 ]
 
 

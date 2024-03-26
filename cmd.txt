@@ -1,0 +1,13 @@
+create Address state="casa-settate" city="casa" zipcode="5888" country="Ma"
+
+create User FirstName="OUSSAMA" LastName="ELhadraoui" tel="06144544514" address_id="9bd82d40-ba52-4742-aa91-c012c5222612"
+
+create Meals name="salade_cesar" protein=60 calories=250 Carbs=99 Fat=70
+
+create Plan NumberPeople=2 NumberMeals=4 PrixPersonne=120.45 duration=3
+
+create Ingredient ingredientsName="tomatos"
+
+create Order user_id="ff8907fa-4f16-4d22-9b0a-1763f089b9d3" plan_id="a5f603b4-8a5c-4f4f-925c-f5978b9d57e4"
+
+create MealIngredient meal_id="" ingredient_id=""
