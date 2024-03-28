@@ -272,3 +272,31 @@ INSERT INTO preferences (id, name, created_at, updated_at) VALUES (UUID(), 'Fami
 INSERT INTO preferences (id, name, created_at, updated_at) VALUES (UUID(), 'Fit & Wholesome', NOW(), NOW());
 INSERT INTO preferences (id, name, created_at, updated_at) VALUES (UUID(), 'Quick & Easy', NOW(), NOW());
 INSERT INTO preferences (id, name, created_at, updated_at) VALUES (UUID(), 'Pescatarian', NOW(), NOW());
+
+
+-- Meat & Veggies
+INSERT INTO meal_preferences (meal_id, preference_id) VALUES ('1a483acf-eaff-11ee-899c-c8d9d2eb390e', '932360f2-eb73-11ee-a764-c8d9d2eb390e');
+INSERT INTO meal_preferences (meal_id, preference_id) VALUES ('1a487cbf-eaff-11ee-899c-c8d9d2eb390e', '932360f2-eb73-11ee-a764-c8d9d2eb390e');
+INSERT INTO meal_preferences (meal_id, preference_id) VALUES ('1a487e39-eaff-11ee-899c-c8d9d2eb390e', '932360f2-eb73-11ee-a764-c8d9d2eb390e');
+INSERT INTO meal_preferences (meal_id, preference_id) VALUES ('1a487eaf-eaff-11ee-899c-c8d9d2eb390e', '932360f2-eb73-11ee-a764-c8d9d2eb390e');
+INSERT INTO meal_preferences (meal_id, preference_id) VALUES ('1a4880dc-eaff-11ee-899c-c8d9d2eb390e', '932360f2-eb73-11ee-a764-c8d9d2eb390e');
+
+-- Veggie
+INSERT INTO meal_preferences (meal_id, preference_id) VALUES ('1a487a78-eaff-11ee-899c-c8d9d2eb390e', '932789af-eb73-11ee-a764-c8d9d2eb390e');
+INSERT INTO meal_preferences (meal_id, preference_id) VALUES ('1a487db3-eaff-11ee-899c-c8d9d2eb390e', '932789af-eb73-11ee-a764-c8d9d2eb390e');
+
+-- Family Friendly
+INSERT INTO meal_preferences (meal_id, preference_id) VALUES ('1a487a78-eaff-11ee-899c-c8d9d2eb390e', '932a0eac-eb73-11ee-a764-c8d9d2eb390e');
+INSERT INTO meal_preferences (meal_id, preference_id) VALUES ('1a487eaf-eaff-11ee-899c-c8d9d2eb390e', '932a0eac-eb73-11ee-a764-c8d9d2eb390e');
+INSERT INTO meal_preferences (meal_id, preference_id) VALUES ('1a4880dc-eaff-11ee-899c-c8d9d2eb390e', '932a0eac-eb73-11ee-a764-c8d9d2eb390e');
+INSERT INTO meal_preferences (meal_id, preference_id) VALUES ('1a488069-eaff-11ee-899c-c8d9d2eb390e', '932a0eac-eb73-11ee-a764-c8d9d2eb390e');
+
+-- Fit & Wholesome
+INSERT INTO meal_preferences (meal_id, preference_id) VALUES ('1a487db3-eaff-11ee-899c-c8d9d2eb390e', '932c85b5-eb73-11ee-a764-c8d9d2eb390e');
+INSERT INTO meal_preferences (meal_id, preference_id) VALUES ('1a487e39-eaff-11ee-899c-c8d9d2eb390e', '932c85b5-eb73-11ee-a764-c8d9d2eb390e');
+INSERT INTO meal_preferences (meal_id, preference_id) VALUES ('1a487eaf-eaff-11ee-899c-c8d9d2eb390e', '932c85b5-eb73-11ee-a764-c8d9d2eb390e');
+INSERT INTO meal_preferences (meal_id, preference_id) VALUES ('1a488069-eaff-11ee-899c-c8d9d2eb390e', '932c85b5-eb73-11ee-a764-c8d9d2eb390e');
+INSERT INTO meal_preferences (meal_id, preference_id) VALUES ('1a4880dc-eaff-11ee-899c-c8d9d2eb390e', '932c85b5-eb73-11ee-a764-c8d9d2eb390e');
+
+-- Quick & Easy
+INSERT INTO meal_preferences (meal_id, preference_id) VALUES ('1a483acf-eaff-11ee-899c-c8d9d2eb390e', '932efee3-eb73-11ee-a764-c8d9d2eb390e');

@@ -21,7 +21,7 @@ from models.Preference import Preference
 from models.mealPreference import MealPreference
 
 
-classes = {"User": User, "Plan": Plan, "Order": Order, "Meal": Meal, "Ingredient": Ingredient, "Address": Address}
+classes = {"User": User, "Plan": Plan, "Order": Order, "Meal": Meal, "Ingredient": Ingredient, "Address": Address, "Preference": Preference}
 meal_id_index = Index('meal_id_index', Meal.id)
 order_id_index = Index('order_id_index', Order.id)
 

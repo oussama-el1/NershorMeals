@@ -16,3 +16,4 @@ from api.v1.views.plans import *
 from api.v1.views.ingredients import *
 from api.v1.views.meals import *
 from api.v1.views.customizationOptions import *
+from api.v1.views.pref import *

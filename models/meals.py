@@ -17,4 +17,4 @@ class Meal(BaseData, Base):
     
     orders = relationship("Order", secondary="order_meals", overlaps="meals")
     ingredients = relationship("Ingredient", secondary="meal_ingredients", overlaps="meals")
-    preference = relationship("Preference", secondary="meal_preferences", overlaps="meals")
+    preferences = relationship("Preference", secondary="meal_preferences", overlaps="meals")

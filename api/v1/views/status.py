@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 """ Routes for Status of api """
 from api.v1.views import app_views
 from flask import jsonify

@@ -10,6 +10,7 @@
 from api.v1.views import app_views, authenticate
 from flask import abort, jsonify, make_response, request
 from models.meals import Meal
+from models.Preference import Preference
 from models import storage
 
 
@@ -19,7 +20,12 @@ def get_all_meals():
     all_meals = storage.all(Meal).values()
     res = []
     for meal in all_meals:
-        res.append(meal.to_dict())
+        data = meal.to_dict()
+        ingredients = []
+        for ingredient in meal.ingredients:
+            ingredients.append(ingredient.ingredientsName)
+        data['ingredients'] = ingredients
+        res.append(data)
     return jsonify(res)
 
 
@@ -98,7 +104,39 @@ def update_meal(meal_id):
 
 
 
-@app_views.route('/meals/<meal_id>/customize', methods=['PUT'], strict_slashes=False)
-def customize_meal():
-    """ Allows users to customize meal options (e.g., portion size, dietary preferences) """
-    pass
+@app_views.route('/meals/<meal_id>/preferences', methods=['GET'], strict_slashes=False)
+def prefs_for_meal(meal_id):
+    """ all preferences for a meal """
+    meal = storage.get(Meal, meal_id)
+    if meal is None:
+        return jsonify({"meassage": f"Meal [{meal_id}] Not Found"}), 404
+    preferences = meal.preferences
+    data = []
+    for preference in preferences:
+        data.append(preference.name)
+    return jsonify(data), 200
+
+
+@app_views.route('/meals_search', methods=['POST'], strict_slashes=False)
+def meals_by_preferences():
+    """To retrieve meals that have all the selected preferences"""
+    if request.get_json() is None:
+        abort(400, description="Not a JSON")
+
+    data = request.get_json()
+    preferences_ids = data.get("preferences", None)
+    if not preferences_ids:
+        return jsonify({'message': 'No preferences provided'}), 400
+    list_meals = storage.all(Meal).values()
+    pref_obj = [storage.get(Preference, p_id) for p_id in preferences_ids]
+    list_meals = [meal for meal in list_meals
+                        if all([pref in meal.preferences
+                                for pref in pref_obj])]
+    meals = []
+    for meal in list_meals:
+        data = meal.to_dict()
+        data.pop('preferences', None)
+        meals.append(data)
+
+    return jsonify(meals), 200
+
