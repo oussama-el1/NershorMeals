@@ -6,10 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Meal Plans - Nearshore Meals</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link rel="stylesheet" href="css/getoffer.css">
+    <link rel="stylesheet" href="../static/css/getoffer.css?{{unique_id}}">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="js/pref.js"></script>
-    <script src="js/offer.js"></script>
+    <script src="../static/js/pref.js?{{unique_id}}"></script>
+    <script src="../static/js/offer.js?{{unique_id}}"></script>
+    <script src="../static/js/prices.js?{{unique_id}}"></script>
+    <script src="../static/js/btn-plan.js?{{unique_id}}"></script>
 </head>
 
 <body>
@@ -24,100 +26,76 @@
     </nav> -->
 
     <div class="container">
-        <h2 style="text-align: center;">Personalize your plan</h2>
+        <h2>Personalize your plan</h2>
         <div class="subcontainer">
             <div class="preferences">
-                <h3>1. Choose Your Preferences</h3>
-                <div class="preference-card">
-                    <input class="prefcheckbox" type="checkbox" id="pref1" data-name="Meat & Veggies">
-                    <label style="font-family: 'Courier New', Courier, monospace;" for="pref1"><i
-                            class="fas fa-utensils"></i> <strong>Meat & Veggies</strong></label>
-                </div>
-                <div class="preference-card">
-                    <input class="prefcheckbox" type="checkbox" id="pref2" data-name="Veggie">
-                    <label style="font-family: 'Courier New', Courier, monospace;" for="pref2"><i
-                            class="fas fa-carrot"></i> <strong>Veggie</strong></label>
-                </div>
-                <div class="preference-card">
-                    <input class="prefcheckbox" type="checkbox" id="pref3" data-name="Family Friendly">
-                    <label style="font-family: 'Courier New', Courier, monospace;" for="pref3"><i
-                            class="fas fa-child"></i> <strong>Family Friendly</strong></label>
-                </div>
-                <div class="preference-card">
-                    <input class="prefcheckbox" type="checkbox" id="pref4" data-name="Wholesome">
-                    <label style="font-family: 'Courier New', Courier, monospace;" for="pref4"><i
-                            class="fas fa-heartbeat"></i> <strong>Wholesome</strong></label>
-                </div>
-                <div class="preference-card">
-                    <input class="prefcheckbox" type="checkbox" id="pref5" data-name="Quick & Easy">
-                    <label style="font-family: 'Courier New', Courier, monospace;" for="pref5"><i
-                            class="fas fa-stopwatch"></i> <strong>Quick & Easy</strong></label>
-                </div>
-                <div class="preference-card">
-                    <input class="prefcheckbox" type="checkbox" id="pref6" data-name="Pescatarian">
-                    <label style="font-family: 'Courier New', Courier, monospace;" for="pref6"><i
-                            class="fas fa-fish"></i> <strong>Pescatarian</strong></label>
-                </div>
+                <h3 class="sub-h3">1. Choose Your Preferences</h3>
+                <p>Your preferences help us show you the most relevant recipes first. You'll still have access to all recipes each week!</p>
+                {% for icon, preference in prefs_icons %}
+                    <div class="preference-card">
+                        <input class="prefcheckbox" type="checkbox" data-id="{{preference.id}}" data-name="{{preference.name}}">
+                        <label for="{{preference.id}}">
+                            {{ icon | safe }}
+                            <strong>{{preference.name}}</strong>
+                        </label>
+                    </div>
+                {%endfor%}
             </div>
 
             <div class="vertical-divider"></div>
 
             <div class="customization">
                 <!-- Plan customization options go here -->
-                <h3 style="text-align: center;">2. Customize your plan size</h3>
+                <h3 class="sub-h3">2. Customize your plan size</h3>
                 <div class="plan-options-p">
                     <h3 style="font-family: 'Courier New', Courier, monospace;">Number of People:</h3>
                     <div class="option-card">
-                        <input type="radio" id="numPeople2" name="numPeople" value="2" style="display: none;">
+                        <input class="op" type="radio" id="numPeople2" name="numPeople" value="2" style="display: none;">
                         <label for="numPeople2">2</label>
                     </div>
                     <div class="option-card">
-                        <input type="radio" id="numPeople4" name="numPeople" value="4" style="display: none;">
+                        <input class="op" type="radio" id="numPeople4" name="numPeople" value="4" style="display: none;">
                         <label for="numPeople4">4</label>
                     </div>
                 </div>
                 <div class="plan-options-m">
                     <h3 style="font-family: 'Courier New', Courier, monospace;">Meals per Week:</h3>
                     <div class="option-card">
-                        <input type="radio" id="mealsPerWeek2" name="mealsPerWeek" value="2" style="display: none;">
+                        <input class="op" type="radio" id="mealsPerWeek2" name="mealsPerWeek" value="2" style="display: none;">
                         <label for="mealsPerWeek2">2</label>
                     </div>
                     <div class="option-card">
-                        <input type="radio" id="mealsPerWeek3" name="mealsPerWeek" value="3" style="display: none;">
+                        <input class="op" type="radio" id="mealsPerWeek3" name="mealsPerWeek" value="3" style="display: none;">
                         <label for="mealsPerWeek3">3</label>
                     </div>
                     <div class="option-card">
-                        <input type="radio" id="mealsPerWeek4" name="mealsPerWeek" value="4" style="display: none;">
+                        <input class="op" type="radio" id="mealsPerWeek4" name="mealsPerWeek" value="4" style="display: none;">
                         <label for="mealsPerWeek4">4</label>
                     </div>
                     <div class="option-card">
-                        <input type="radio" id="mealsPerWeek5" name="mealsPerWeek" value="5" style="display: none;">
+                        <input class="op" type="radio" id="mealsPerWeek5" name="mealsPerWeek" value="5" style="display: none;">
                         <label for="mealsPerWeek5">5</label>
                     </div>
                     <div class="option-card">
-                        <input type="radio" id="mealsPerWeek6" name="mealsPerWeek" value="6" style="display: none;">
+                        <input class="op" type="radio" id="mealsPerWeek6" name="mealsPerWeek" value="6" style="display: none;">
                         <label for="mealsPerWeek6">6</label>
                     </div>
                 </div>
                 <div class="plan-details">
                     <h3>Choose Your Plan</h3>
-                    <p class="simple-text">3 meals for 2 people per week</p>
-                    <p class="simple-text">6 total servings</p>
+                    <p class="simple-text" id="st1"> .. meals for .. people per week</p>
+                    <p class="simple-text" id="st2"> ..  total servings</p>
                     <div class="hor-divider"></div>
-                    <p><strong>Box price:</strong> <span class="price">$59.94</span></p>
-                    <p><strong>Price per serving:</strong> <span class="price">$9.99</span></p>
+                    <p><strong>Box price:</strong> <span class="price">$</span></p>
+                    <p><strong>Price per serving:</strong> <span class="price">$4.78</span></p>
                     <div class="hor-divider"></div>
-                    <p><strong>Price off:</strong> <span class="off">$41.00</span></p>
-                    <p><strong>Final price:</strong> <span class="price">$29.93</span></p>
+                    <p><strong>Price off:</strong> <span class="off">$</span></p>
+                    <p><strong>Final price:</strong> <span class="price final-price">$</span></p>
                 </div>
             </div>
         </div>
-        <button>Select this Plan</button>
+        <button id="select-plan-btn">Select this Plan</button>
     </div>
-
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
-    
-
 </body>
-
 </html>

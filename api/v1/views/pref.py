@@ -2,7 +2,7 @@
 """ Preferences routes """
 from api.v1.views import app_views, authenticate
 from flask import abort, jsonify, make_response, request
-from models.Preference import Preference 
+from models.Preference import Preference
 from models import storage
 
 @app_views.route('/preferences', methods=['GET'], strict_slashes=False)

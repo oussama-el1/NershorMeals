@@ -4,11 +4,12 @@ $(document).ready(function () {
     // Handling change events on checkboxes
     $('.prefcheckbox').change(function () {
         var prefName = $(this).data('name');
-        
+        var prefid = $(this).data('id');
+
         if ($(this).is(':checked')) {
-            selectedPref[prefName] = prefName;
+            selectedPref[prefid] = prefName;
         } else {
-            delete selectedPref[prefName];
+            delete selectedPref[prefid];
         }
 
         let valuesArray = [];
@@ -25,6 +26,7 @@ $(document).ready(function () {
         }
         
         // Update the text
+        console.log(selectedPref)
         $('.plan-details h3').text(planDetailsText);
     });
 });
