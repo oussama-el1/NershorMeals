@@ -3,12 +3,17 @@
 
 from models import storage
 from models.Preference import Preference
-from flask import Flask, render_template, redirect, request, session, url_for
+from flask import Flask, render_template, jsonify, request, session, make_response
 from uuid import uuid4
+import requests
+from models.order import Order
+from models.plan import Plan
+
 
 
 app = Flask(__name__)
 app.secret_key = 'oussama@1230.'
+
 
 @app.teardown_appcontext
 def close_db(error):
@@ -26,10 +31,10 @@ def home_page():
 def plans():
     """ this route is for the plans """
     preferences = storage.all(Preference).values()
-    icons = ['<i class="fas fa-utensils"></i>',
+    icons = ['<i class="fas fa-heartbeat"></i>',
              '<i class="fas fa-carrot"></i>',
              '<i class="fas fa-child"></i>',
-             '<i class="fas fa-heartbeat"></i>',
+             '<i class="fas fa-utensils"></i>',
              '<i class="fas fa-stopwatch"></i>',
              '<i class="fas fa-fish"></i>']
     prefs_icons = list(zip(icons, preferences))
@@ -70,20 +75,76 @@ def store_session_data_address():
     session['apt'] = data.get('apt', '')
     session['city'] = data.get('city', '')
     session['zip_code'] = data.get('zip_code', '')
+    session['state'] = data.get('state', '')
+    session['tel'] = data.get('tel', '')
     
     return 'Session data for address stored successfully', 200
+
+
+
+@app.route('/create_user_and_address', methods=['POST'])
+def create_user_and_address():
+    # Retrieve user and address data from session
+    user_data = {
+        'email': session.get('email'),
+        'password': session.get('password'),
+        'FirstName': session.get('first_name'),
+        'LastName': session.get('last_name'),
+        'tel': session.get('tel')
+    }
+    
+    address_data = {
+        'state': session.get('state'),
+        'city': session.get('city'),
+        'street': session.get('street'),
+        'zipcode': session.get('zip_code'),
+        'apt': session.get('apt')
+    }
+    
+    user_creation_response = requests.post('http://127.0.0.1:5000/api/v1/users', json=user_data, auth=('john', 'password123'))
+    
+    if user_creation_response.status_code != 201:
+        return jsonify({'error': 'Failed to create user'}), 500
+    
+    user_id = user_creation_response.json().get('id')
+    address_data['user_id'] = user_id
+    address_creation_response = requests.post('http://127.0.0.1:5000/api/v1/address', json=address_data, auth=('john', 'password123'))
+    
+    if address_creation_response.status_code != 201:
+        return jsonify({'error': 'Failed to create address'}), 500
+    
+    plan_data = {
+        "NumberPeople": session.get('numPeople'),
+        "NumberMeals": session.get('mealsPerWeek'),
+        "boxtotale": session.get('totale'),
+        "duration": 2
+    }
+    
+    order_data = {
+        "user_id": user_id
+    }
+    
+    plan_creation_response = requests.post('http://127.0.0.1:5000/api/v1/plans', json=plan_data, auth=('john', 'password123'))
+    
+    if plan_creation_response.status_code != 201:
+        return jsonify({'error': 'Failed to create plan'}), 500
+    
+    plan_id = plan_creation_response.json().get('id')
+    order_data["plan_id"] = plan_id
+    
+    order_creation_response = requests.post('http://127.0.0.1:5000/api/v1/orders', json=order_data, auth=('john', 'password123'))
+    
+    if order_creation_response.status_code != 201:
+        return jsonify({'error': 'Failed to create order'}), 500
+    
+    return jsonify({'message': 'User and address created successfully', 'order_id': order_creation_response.json().get('id')}), 200
 
 
 @app.route('/registration', strict_slashes=False)
 def registration():
     """ Retrieve user preferences from session """
-    preferences = session.get('selectedPrefs')
-    numPeople = session.get('numPeople')
-    mealsPerWeek = session.get('mealsPerWeek')
     return render_template('registration.html', unique_id=uuid4())
 
-from flask import session, render_template
-from uuid import uuid4
 
 @app.route('/form', strict_slashes=False)
 def form():
@@ -110,20 +171,61 @@ def form():
     return render_template('form.html', session_data=session_data, unique_id=uuid4())
 
 
-
 @app.route('/checkout')
 def checkout():
     """ Display checkout page with session data """
-    # Retrieve session data
     session_data = {
-        'first_name': session.get('first_name', ''),
-        'last_name': session.get('last_name', ''),
-        'street': session.get('street', ''),
-        'apt': session.get('apt', ''),
-        'city': session.get('city', ''),
-        'zip_code': session.get('zip_code', '')
+        'selectedPrefs': session.get('selectedPrefs'),
+        'numPeople': session.get('numPeople'),
+        'mealsPerWeek': session.get('mealsPerWeek'),
+        'boxprice': session.get('boxprice'),
+        'discount': session.get('discount'),
+        'totale': session.get('totale'),
+        'firstname': session.get('first_name'),
+        'lastname': session.get('last_name'),
+        'address': {
+            'street': session.get('street'),
+            'apt': session.get('apt'),
+            'city': session.get('city'),
+            'zipcode': session.get('zip_code')
+        }
     }
-    return render_template('checkout.html', session_data=session_data)
+    
+    numPeople = session.get('numPeople')
+    mealsPerWeek = session.get('mealsPerWeek')
+    serving = int(numPeople) * int(mealsPerWeek)
+    session_data['serving'] = serving 
+    
+    preferencesName = [storage.get(Preference, pref_id).name for pref_id in session_data.get('selectedPrefs')]
+    preference_string = ' '.join(preferencesName)
+    session_data['preferences'] = preference_string
+    
+    return render_template('checkout.html', session_data=session_data, unique_id=uuid4())
+
+
+@app.route('/order/<order_id>')
+def order_page(order_id):
+    order = storage.get(Order, order_id)
+    if order is None:
+        return make_response("<h1>Order Not Found </h1>", 404)
+    plan = storage.get(Plan, order.plan_id)
+    order_details = {
+        'order_id': order_id,
+        'mealsPerWeek': plan.NumberMeals
+    }
+
+    preferences = session.get('selectedPrefs')
+    preferences_data = {
+        'preferences': preferences
+    }
+    meals_response = requests.post('http://127.0.0.1:5000/api/v1/meals_search', json=preferences_data)
+    
+    if meals_response.status_code != 200:
+        return "Meals in all the preference selectef error", 403
+    
+    meals = meals_response.json()
+    return render_template('order.html', order_details=order_details, Topmeal=meals)
+
 
 if __name__ == "__main__":
     host = "0.0.0.0"

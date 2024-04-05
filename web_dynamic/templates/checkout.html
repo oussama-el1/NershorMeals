@@ -1,19 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Checkout</title>
-    <link rel="stylesheet" href="../static/css/form.css?{{unique_id}}">
+    <link rel="stylesheet" href="../static/css/checkout.css?{{unique_id}}">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="../static/js/adress.js?{{unique_id}}"></script>
+    <script src="../static/js/checkout.js?{{unique_id}}"></script>
 </head>
+
 <body>
     <div class="container">
-        <div class="left-section">
-            <h2>Payment Method</h2>
-            <p>Our current payment method is cash on delivery. We are working on integrating PayPal and credit card payments.</p>
-            <p>Please proceed with your order, and our delivery agent will collect the payment upon delivery.</p>
+        <div class="left-section cod-background">
+            <div class="subcon">
+                <div style="margin-bottom: 30px;">
+                    <h2 style="font-size: 40px;">Payment Method</h2>
+                </div>
+                <div class="cod-container">
+                    <div class="cod-description">
+                        <p>Our current payment method is <strong style="color: #245953;"> cash on delivery</strong>. We are working on integrating PayPal and
+                            credit card payments.</p>
+                        <p>Please proceed with your order, and our delivery agent will collect the payment upon
+                            delivery.</p>
+                    </div>
+                </div>
+            </div>
             <button class="button-50" type="button">Proceed to Checkout</button>
         </div>
         <div class="right-section">
@@ -60,16 +72,19 @@
                 </div>
                 <div>
                     <h2>
-                        Delivery summary
+                        Delivery address
                     </h2>
-                    <p class="lastparagraph">Please <strong style="color: rgb(17, 16, 16);">enter your zip code</strong> to see available delivery dates.</p>
+                    <p class="lastparagraph"><strong>Street: </strong>{{ session_data['address']['street'] }}</p><br>
+                    <p class="lastparagraph"><strong>Apartment: </strong>{{ session_data['address']['apt'] }}</p><br>
+                    <p class="lastparagraph"><strong>City: </strong>{{ session_data['address']['city'] }}</p><br>
+                    <p class="lastparagraph"><strong>Zipcode: </strong>{{ session_data['address']['zipcode'] }}</p>
                 </div>
             </div>
         </div>
     </div>
 </body>
 <script>
-    window.addEventListener('pageshow', function(event) {
+    window.addEventListener('pageshow', function (event) {
         if (event.persisted) {
             window.location.reload();
         }

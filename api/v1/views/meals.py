@@ -136,6 +136,8 @@ def meals_by_preferences():
     for meal in list_meals:
         data = meal.to_dict()
         data.pop('preferences', None)
+        ingredients = [ing.ingredientsName for ing in meal.ingredients]
+        data['ingredients'] = ingredients
         meals.append(data)
 
     return jsonify(meals), 200

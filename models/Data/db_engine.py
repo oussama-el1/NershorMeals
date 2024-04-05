@@ -48,7 +48,7 @@ class DBStorage:
 
     def __init__(self):
         """Instantiate a DBStorage object"""
-        self.__engine = create_engine('mysql+mysqldb://root:root@localhost/nershormeals',pool_pre_ping=True)
+        self.__engine = create_engine('mysql+mysqldb://root:root@localhost/nershormeals2',pool_pre_ping=True)
         
 
     def all(self, cls=None):

@@ -300,3 +300,19 @@ INSERT INTO meal_preferences (meal_id, preference_id) VALUES ('1a4880dc-eaff-11e
 
 -- Quick & Easy
 INSERT INTO meal_preferences (meal_id, preference_id) VALUES ('1a483acf-eaff-11ee-899c-c8d9d2eb390e', '932efee3-eb73-11ee-a764-c8d9d2eb390e');
+
+
+
+INSERT INTO your_table_name (meal_id, preference_id) VALUES 
+('40a3bd02-f2a5-11ee-8357-c8d9d2eb390e', 'c8bf8730-f1c0-11ee-af07-c8d9d2eb390e'),
+('40a3bd02-f2a5-11ee-8357-c8d9d2eb390e', 'c8c46ba2-f1c0-11ee-af07-c8d9d2eb390e'),
+('40a3bd02-f2a5-11ee-8357-c8d9d2eb390e', 'c8c8c30d-f1c0-11ee-af07-c8d9d2eb390e'),
+('40a3bd02-f2a5-11ee-8357-c8d9d2eb390e', 'c8cd68a1-f1c0-11ee-af07-c8d9d2eb390e'),
+('40a3bd02-f2a5-11ee-8357-c8d9d2eb390e', 'c8d22078-f1c0-11ee-af07-c8d9d2eb390e'),
+('40a3bd02-f2a5-11ee-8357-c8d9d2eb390e', 'c8d65dd8-f1c0-11ee-af07-c8d9d2eb390e');
+
+
+INSERT INTO your_table_name (meal_id, ingredient_id) VALUES 
+('40a3bd02-f2a5-11ee-8357-c8d9d2eb390e', '44c4d807-f2a6-11ee-8357-c8d9d2eb390e'),
+('40a3bd02-f2a5-11ee-8357-c8d9d2eb390e', '44c4d85b-f2a6-11ee-8357-c8d9d2eb390e'),
+('40a3bd02-f2a5-11ee-8357-c8d9d2eb390e', '44c4d8ae-f2a6-11ee-8357-c8d9d2eb390e');

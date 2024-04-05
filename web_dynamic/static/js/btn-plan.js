@@ -1,7 +1,20 @@
 $(document).ready(function () {
+    $('#select-plan-btn').prop('disabled', true);
+    $('.message').hide();
+
+    function toggleSelectPlanButton() {
+        var anyPreferenceSelected = $('.prefcheckbox:checked').length > 0;
+        $('#select-plan-btn').prop('disabled', !anyPreferenceSelected);
+
+        if (anyPreferenceSelected) {
+            $('.message').hide();
+        } else {
+            $('.message').show();
+        }
+    }
+    $('.prefcheckbox').on('change', toggleSelectPlanButton);
     function updateSessionData() {
         var selectedPrefs = [];
-        // Retrieve selected preferences
         $('.prefcheckbox:checked').each(function () {
             selectedPrefs.push($(this).data('id'));
         });

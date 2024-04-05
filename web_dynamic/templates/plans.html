@@ -31,6 +31,7 @@
             <div class="preferences">
                 <h3 class="sub-h3">1. Choose Your Preferences</h3>
                 <p>Your preferences help us show you the most relevant recipes first. You'll still have access to all recipes each week!</p>
+                <div class="message" style="display: none; color: red; margin-bottom: 20px;">Please select at least 1 option.</div>
                 {% for icon, preference in prefs_icons %}
                     <div class="preference-card">
                         <input class="prefcheckbox" type="checkbox" data-id="{{preference.id}}" data-name="{{preference.name}}">
@@ -94,7 +95,7 @@
                 </div>
             </div>
         </div>
-        <button id="select-plan-btn">Select this Plan</button>
+        <button id="select-plan-btn" role="button">Select this Plan</button>
     </div>
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 </body>

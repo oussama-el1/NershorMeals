@@ -1,6 +1,5 @@
 $(document).ready(function () {
     var selectedPref = {};
-    
     // Handling change events on checkboxes
     $('.prefcheckbox').change(function () {
         var prefName = $(this).data('name');

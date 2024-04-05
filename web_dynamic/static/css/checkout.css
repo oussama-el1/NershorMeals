@@ -30,10 +30,41 @@ body {
     background-color: #f5f3f3;
 }
 
-.head-text {
+
+.cod-background {
+    background-image: url('../images/image.jpg?{{unique_id}}');
+    background-size: cover;
+    height: auto;
+    background-position: center;
+    padding: 50px;
     display: flex;
     flex-direction: column;
-    padding-left: 30px;
+    align-items: start;
+    justify-content: center;
+}
+
+.subcon{
+    background-color: #F8F6F4;
+    padding: 20px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px;
+    margin-bottom: 50px;
+}
+
+.cod-background h2 {
+    font-size: 40px;
+    font-weight: bold;
+    font-family:'Times New Roman', Times, serif;
+    color: #272829;
+    margin: 0;
+    
+}
+
+.cod-description p {
+    font-size: 20px;
+    font-family:'Courier New', Courier, monospace;
+    color: #191717;
+    margin: 0px;
+    text-align: start;
 }
 
 h2 {
@@ -51,109 +82,15 @@ h2 {
     width: auto;
 }
 
-h3 {
-    box-sizing: border-box;
-    color: rgb(36, 36, 36);
-    display: inline;
-    font-family: "Source Sans Pro", "Trebuchet MS", Helvetica, sans-serif;
-    font-size: 18px;
-    font-weight: 600;
-    height: auto;
-    line-height: 24px;
-    text-rendering: optimizeSpeed;
-    text-size-adjust: 100%;
-    width: auto;
-    margin: 0px;
-}
-
-.form-group {
-    margin-bottom: 28px;
-}
-
-form {
-    width: 100%;
-    padding: 30px;
-    border-radius: 8px;
-}
-
-.input-group {
-    display: flex;
-    margin-bottom: 10px;
-    justify-content: space-between;
-    gap: 30px;
-}
-
-.input-group input[type="text"] {
-    flex: 1;
-    margin-right: 10px;
-}
-
-input[type="text"],
-input[type="tel"],
-input[type="email"] {
-    appearance: none;
-    box-sizing: border-box;
-    width: 50%;
-    padding: 15px;
-    height: 48px;
-    font-family: "Source Sans Pro", "Trebuchet MS", Helvetica, sans-serif;
-    font-size: 16px;
-    line-height: 24px;
-    color: rgb(15, 13, 13);
-    border-radius: 4px;
-    border-width: 1px;
-    border-style: solid;
-    border-color: rgb(70, 135, 134);
-    filter: none;
-}
-
-.condition {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    font-family: "Source Sans Pro", "Trebuchet MS", Helvetica, sans-serif;
-    line-height: 19.2px;
-    text-rendering: optimizespeed;
-    text-size-adjust: 100%;
-    unicode-bidi: isolate;
-    padding: 0px;
-    margin-top: 20px;
-}
-
-.condition h5 {
-    margin: 10px;
-}
-
-.text-condition {
-    color: rgb(118, 118, 118);
-    font-family: "Source Sans Pro", "Trebuchet MS", Helvetica, sans-serif;
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 20px;
-    text-align: justify;
-    margin-bottom: 20px;
-}
-
-.text-condition p {
-    margin: 0px;
-}
-
 .hor-divader {
     width: 98%;
     border: 2px dashed rgb(201, 201, 201);
 }
 
-input[type="checkbox"] {
-    width: 3em;
-    height: 3rem;
-    accent-color: green;
-    width: 18px;
-    height: 18px;
-}
 
 .button-50 {
     appearance: button;
-    background-color: #379237;
+    background-color: #96C291;
     background-image: none;
     border: 1px solid #000;
     border-radius: 4px;
@@ -166,7 +103,7 @@ input[type="checkbox"] {
     font-size: 14px;
     font-weight: 400;
     line-height: 20px;
-    margin: 0 5px 10px 0;
+    margin: 30px 5px 30px 0;
     overflow: visible;
     padding: 12px 40px;
     text-align: center;
@@ -280,18 +217,10 @@ input[type="checkbox"] {
     font-weight: 400;
 }
 
-.button-50[disabled] {
-    background-color: #ccc;
-    color: #000;
-    cursor: not-allowed;
-    opacity: 0.7;
-}
-
-
 @media only screen and (max-width: 600px) {
     body {
-        margin: 0;
-        padding: 0;
+        margin: 0px;
+        padding: 0px;
     }
 
     .container {
@@ -310,51 +239,12 @@ input[type="checkbox"] {
     .right-section {
         padding-left: 0;
         padding-right: 0;
-        margin: 20px;
-        margin-bottom: 40px;
         box-shadow: rgba(0, 0, 0, 0.2) 0px 20px 30px;
     }
 
-    .input-group input[type="text"] {
-        flex: 1;
-        margin-right: 0px;
-    }
-
-    h2 {
-        font-size: 20px;
-    }
-
-    h3 {
-        font-size: 16px;
-    }
-
-    input[type="text"],
-    input[type="tel"],
-    input[type="email"] {
-        width: 100%;
-    }
-
-    .text-condition p {
-        width: 100%;
-        box-sizing: border-box;
-        /* Include padding and borders in total width */
-    }
-
-    .order-container h2 {
-        font-size: 18px;
-        margin-bottom: 15px;
-    }
-
-    .price-totale h4 {
-        font-size: 16px;
-    }
-
-    .text-condition p {
-        font-size: 12px;
-    }
-
-    .condition h5 {
-        font-size: 14px;
+    .subcon{
+        margin-top: 40px;
+        margin-bottom: 0px;
     }
 }
 

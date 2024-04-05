@@ -8,7 +8,7 @@ class Plan(BaseData, Base):
     __tablename__ = 'plans'
     NumberPeople = Column(Integer, nullable=False)
     NumberMeals = Column(Integer, nullable=False)
-    PrixPersonne = Column(Float, nullable=False)
-    duration = Column(Integer, nullable=False)
+    boxtotale = Column(Float, nullable=False)
+    duration = Column(Integer, nullable=False) # always is 3 days
     
     users = relationship("User", secondary="orders", overlaps="plans")

@@ -52,6 +52,12 @@ body {
     max-height: 100%;
   }
   
+  .registration-btn[disabled] {
+    background-color: #cccccc; /* Change background color to gray */
+    color: #999999; /* Change text color to light gray */
+    cursor: not-allowed; /* Change cursor to indicate that button is not clickable */
+  }
+  
   .form-group {
     margin-bottom: 20px;
   }
