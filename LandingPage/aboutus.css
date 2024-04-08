@@ -1,0 +1,44 @@
+/* styles.css */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.about-section {
+    background-color: #f9f9f9;
+    padding: 50px 0;
+}
+
+.about-section h2 {
+    text-align: center;
+}
+
+.about-section p {
+    text-align: justify;
+}
+
+.about-section ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.about-section ul li {
+    display: inline;
+    margin-right: 10px;
+}
+
+.about-section a {
+    text-decoration: none;
+    color: #007bff;
+}
+
+.about-section a:hover {
+    text-decoration: underline;
+}
