@@ -19,7 +19,8 @@
                 </div>
                 <div class="cod-container">
                     <div class="cod-description">
-                        <p>Our current payment method is <strong style="color: #245953;"> cash on delivery</strong>. We are working on integrating PayPal and
+                        <p>Our current payment method is <strong style="color: #245953;"> cash on delivery</strong>. We
+                            are working on integrating PayPal and
                             credit card payments.</p>
                         <p>Please proceed with your order, and our delivery agent will collect the payment upon
                             delivery.</p>
@@ -37,7 +38,8 @@
                         <p>${{ session_data['boxprice'] }}</p>
                     </div>
                     <div class="order-parm">
-                        <p>{{ session_data['mealsPerWeek'] }} Meals per week for {{ session_data['numPeople'] }} people</p>
+                        <p>{{ session_data['mealsPerWeek'] }} Meals per week for {{ session_data['numPeople'] }} people
+                        </p>
                         <br>
                         <p>({{ session_data['serving'] }} servings total)</p>
                     </div>
@@ -58,7 +60,7 @@
                     <p style="color: red;">${{ session_data['discount'] }}</p>
                 </div>
                 <div class="green-div">
-                    <div class="price-totale freedesert" >
+                    <div class="price-totale freedesert">
                         <h4 style="font-weight: 400;">First box shipping</h4>
                         <span class="freespan" style="color: green;"> FREE</span>
                     </div>
@@ -90,4 +92,5 @@
         }
     });
 </script>
+
 </html>

@@ -11,3 +11,4 @@ class Preference(BaseData, Base):
 
     # Define relationship with MealPreference
     meals = relationship("Meal", secondary="meal_preferences", overlaps="preference")
+    orders = relationship("Order", secondary="order_preferences", overlaps="preferences")

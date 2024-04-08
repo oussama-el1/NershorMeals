@@ -58,7 +58,7 @@ def add_plan():
     
     if not request.get_json():
         abort(400, description="Not a JSON")
-    attr = ["NumberPeople", "NumberMeals", "boxtotale", "duration"]
+    attr = ["NumberPeople", "NumberMeals", "boxtotale"]
     ignore = ['id', 'created_at', 'updated_at']
     data = request.get_json()
     for key in attr:
@@ -82,7 +82,7 @@ def update_plan(plan_id):
     if not request.get_json():
         abort(400, description="Not a JSON")
     plan = storage.get(Plan, plan_id)
-    attr = ["NumberPeople", "NumberMeals", "boxtotale", "duration"]
+    attr = ["NumberPeople", "NumberMeals", "boxtotale"]
     ignore = ['id', 'created_at', 'updated_at']
     data = request.get_json()
     for k, v in data.items():

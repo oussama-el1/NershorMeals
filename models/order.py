@@ -11,3 +11,5 @@ class Order(BaseData, Base):
 
     # Define many-to-many relationship with Meals
     meals = relationship("Meal", secondary="order_meals",  overlaps="orders")
+    preferences = relationship("Preference", secondary="order_preferences", overlaps="orders")
+    order_meals = relationship("OrderMeal", overlaps="meals")

@@ -316,3 +316,26 @@ INSERT INTO your_table_name (meal_id, ingredient_id) VALUES
 ('40a3bd02-f2a5-11ee-8357-c8d9d2eb390e', '44c4d807-f2a6-11ee-8357-c8d9d2eb390e'),
 ('40a3bd02-f2a5-11ee-8357-c8d9d2eb390e', '44c4d85b-f2a6-11ee-8357-c8d9d2eb390e'),
 ('40a3bd02-f2a5-11ee-8357-c8d9d2eb390e', '44c4d8ae-f2a6-11ee-8357-c8d9d2eb390e');
+
+
+INSERT INTO meal_preferences (meal_id, preference_id) 
+VALUES 
+('54146163-f360-11ee-862f-c8d9d2eb390e', '76e1cc8a-f35e-11ee-862f-c8d9d2eb390e'),
+('54146163-f360-11ee-862f-c8d9d2eb390e', '76e4a43f-f35e-11ee-862f-c8d9d2eb390e');
+
+-- Inserting meals into preferences
+INSERT INTO meal_preferences (meal_id, preference_id) VALUES 
+('1a11ae8a-f527-11ee-9b94-c8d9d2eb390e', 'ed37c72d-f526-11ee-9b94-c8d9d2eb390e'),
+('1a11ae8a-f527-11ee-9b94-c8d9d2eb390e', 'ed3bc6e4-f526-11ee-9b94-c8d9d2eb390e'),
+('1a11ae8a-f527-11ee-9b94-c8d9d2eb390e', 'ed3f25ab-f526-11ee-9b94-c8d9d2eb390e'),
+('1a11ae8a-f527-11ee-9b94-c8d9d2eb390e', 'ed41e571-f526-11ee-9b94-c8d9d2eb390e'),
+('1a11ae8a-f527-11ee-9b94-c8d9d2eb390e', 'ed44f663-f526-11ee-9b94-c8d9d2eb390e'),
+('1a11ae8a-f527-11ee-9b94-c8d9d2eb390e', 'ed47f00c-f526-11ee-9b94-c8d9d2eb390e');
+
+INSERT INTO meal_preferences (meal_id, preference_id) VALUES 
+('1a11f015-f527-11ee-9b94-c8d9d2eb390e', 'ed37c72d-f526-11ee-9b94-c8d9d2eb390e'),
+('1a11f015-f527-11ee-9b94-c8d9d2eb390e', 'ed3bc6e4-f526-11ee-9b94-c8d9d2eb390e'),
+('1a11f015-f527-11ee-9b94-c8d9d2eb390e', 'ed3f25ab-f526-11ee-9b94-c8d9d2eb390e'),
+('1a11f015-f527-11ee-9b94-c8d9d2eb390e', 'ed41e571-f526-11ee-9b94-c8d9d2eb390e'),
+('1a11f015-f527-11ee-9b94-c8d9d2eb390e', 'ed44f663-f526-11ee-9b94-c8d9d2eb390e'),
+('1a11f015-f527-11ee-9b94-c8d9d2eb390e', 'ed47f00c-f526-11ee-9b94-c8d9d2eb390e');

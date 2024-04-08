@@ -96,7 +96,12 @@ def meals_in_pref(pref_id):
     meals = preference.meals
     data = []
     for meal in meals:
-        data.append(meal.to_dict())
+        ingredients = []
+        for ingredient in meal.ingredients:
+            ingredients.append(ingredient.ingredientsName)
+        meal_json = meal.to_dict()
+        meal_json['ingredients'] = ingredients
+        data.append(meal_json)
     return jsonify(data), 200
 
 

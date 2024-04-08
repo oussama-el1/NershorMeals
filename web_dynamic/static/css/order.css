@@ -89,7 +89,7 @@ nav ul li:first-child a img {
 }
 
 .container {
-  margin-left: 20px;
+  margin-left: 25px;
 }
 
 .meals-list {
@@ -111,10 +111,10 @@ h2 {
 
 .box-meals {
   display: flex;
-  overflow-x: auto; /* Enable horizontal scrolling */
+  overflow-x: auto;
   overflow-y: hidden;
-  max-width: 97%; /* Ensure it doesn't exceed screen width */
-  width: fit-content; /* Expand based on content */
+  max-width: 97%;
+  width: fit-content;
   gap: 20px;
   background-color: #f9f9f9;
   border-radius: 15px;
@@ -142,6 +142,7 @@ h2 {
 .project-info {
   padding: 70px 40px;
   padding-bottom: 0px;
+  margin-bottom: 20px;
   display: flex;
   flex-direction: column;
   gap: 3px;
@@ -183,7 +184,7 @@ h2 {
   width: 300px;
   max-height: 360px;
   border-radius: 8px;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px;
 }
 
 .card-img {
@@ -553,7 +554,7 @@ h2 {
 
 .d-card {
   width: 250px;
-  height: 235px;
+  height: 240px;
   background-color: #fff;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   border-top-right-radius: 10px;
@@ -562,13 +563,13 @@ h2 {
   margin-top: 100px;
 }
 
-
 .header {
-  background-color: #FBA834;
+  background-color: #fba834;
   color: #fff;
   padding: 20px;
   text-align: center;
   font-size: 18px;
+  font-weight: bold;
 }
 
 .body {
@@ -578,7 +579,7 @@ h2 {
 .skill {
   display: flex;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
 }
 
 .skill-name {
@@ -596,7 +597,7 @@ h2 {
 }
 
 .skill-percent {
-  background-color: #333A73;
+  background-color: #333a73;
   height: 100%;
 }
 
@@ -604,7 +605,6 @@ h2 {
   margin-left: 20px;
   font-size: 16px;
 }
-
 
 @media (max-width: 768px) {
   .meals-list {
@@ -641,29 +641,29 @@ h2 {
     justify-content: center;
     width: 100%;
   }
-    .card {
-      position: relative; /* Change position to relative on smaller screens */
-      margin-bottom: 0px;
-      box-shadow: rgba(50, 50, 93, 0.25) -10px -10px 20px 0px, /* Left shadow */
-              rgba(50, 50, 93, 0.25) 10px -10px 20px 0px, /* Right shadow */
-              rgba(50, 50, 93, 0.25) 0px -10px 20px 0px,  /* Top shadow */
-              rgba(0, 0, 0, 0.3) 0px 0px 0px 0px;         /* No shadow on the bottom */
-    }
-  
-    .meal-buttons {
-      position: relative; /* Change position to relative on smaller screens */
-      width: auto; /* Remove width constraint */
-      padding: 10px; /* Adjust padding */
-    }
-  
-    .header{
-      display: none;
-    }
-  
-    .d-card{
-      margin: 0px;
-      width: 85%;
-      height: 170px;
-      border-radius: 0px;
-    }
+  .card {
+    position: relative;
+    margin-bottom: 0px;
+    box-shadow: rgba(50, 50, 93, 0.25) -10px -10px 20px 0px,
+      rgba(50, 50, 93, 0.25) 10px -10px 20px 0px,
+      rgba(50, 50, 93, 0.25) 0px -10px 20px 0px,
+      rgba(0, 0, 0, 0.3) 0px 0px 0px 0px;
+  }
+
+  .meal-buttons {
+    position: relative;
+    width: auto;
+    padding: 10px;
+  }
+
+  .header {
+    display: none;
+  }
+
+  .d-card {
+    margin: 0px;
+    width: 85%;
+    height: 170px;
+    border-radius: 0px;
+  }
 }

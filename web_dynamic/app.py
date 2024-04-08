@@ -8,7 +8,8 @@ from uuid import uuid4
 import requests
 from models.order import Order
 from models.plan import Plan
-
+from models.user import User
+from models.meals import Meal
 
 
 app = Flask(__name__)
@@ -104,20 +105,22 @@ def create_user_and_address():
     user_creation_response = requests.post('http://127.0.0.1:5000/api/v1/users', json=user_data, auth=('john', 'password123'))
     
     if user_creation_response.status_code != 201:
+        print("error user")
         return jsonify({'error': 'Failed to create user'}), 500
     
     user_id = user_creation_response.json().get('id')
+    
     address_data['user_id'] = user_id
     address_creation_response = requests.post('http://127.0.0.1:5000/api/v1/address', json=address_data, auth=('john', 'password123'))
     
     if address_creation_response.status_code != 201:
+        print("error address")
         return jsonify({'error': 'Failed to create address'}), 500
     
     plan_data = {
         "NumberPeople": session.get('numPeople'),
         "NumberMeals": session.get('mealsPerWeek'),
-        "boxtotale": session.get('totale'),
-        "duration": 2
+        "boxtotale": session.get('totale')
     }
     
     order_data = {
@@ -127,6 +130,7 @@ def create_user_and_address():
     plan_creation_response = requests.post('http://127.0.0.1:5000/api/v1/plans', json=plan_data, auth=('john', 'password123'))
     
     if plan_creation_response.status_code != 201:
+        print("error plan")
         return jsonify({'error': 'Failed to create plan'}), 500
     
     plan_id = plan_creation_response.json().get('id')
@@ -135,9 +139,20 @@ def create_user_and_address():
     order_creation_response = requests.post('http://127.0.0.1:5000/api/v1/orders', json=order_data, auth=('john', 'password123'))
     
     if order_creation_response.status_code != 201:
+        print("error order")
         return jsonify({'error': 'Failed to create order'}), 500
     
-    return jsonify({'message': 'User and address created successfully', 'order_id': order_creation_response.json().get('id')}), 200
+    order_id = order_creation_response.json().get('id')
+    
+    order_preferences = {"preferences_ids": session.get("selectedPrefs")}
+    
+    preference_creation_response = requests.post(f'http://127.0.0.1:5000/api/v1/orders/{order_id}/preferences', json=order_preferences, auth=('john', 'password123'))
+    
+    if preference_creation_response.status_code != 201:
+        print("error Preferences")
+        return jsonify({'error': 'Failed to create Preferences Order'}), 500
+    
+    return make_response(jsonify({'message': 'User and address created successfully', 'order_id': order_id}), 200)
 
 
 @app.route('/registration', strict_slashes=False)
@@ -205,26 +220,52 @@ def checkout():
 
 @app.route('/order/<order_id>')
 def order_page(order_id):
+    """ route for meals Order page to select meals (last page) after checkout"""
+    
+    meal_details = ["protein", "Carbs", "Fat"]
     order = storage.get(Order, order_id)
+    
     if order is None:
         return make_response("<h1>Order Not Found </h1>", 404)
     plan = storage.get(Plan, order.plan_id)
+    user = storage.get(User, order.user_id)
     order_details = {
         'order_id': order_id,
         'mealsPerWeek': plan.NumberMeals
     }
-
-    preferences = session.get('selectedPrefs')
+    
+    preferences = []
+    for preference in order.preferences:
+        preferences.append(preference.id)
+    
     preferences_data = {
         'preferences': preferences
     }
+    
     meals_response = requests.post('http://127.0.0.1:5000/api/v1/meals_search', json=preferences_data)
     
     if meals_response.status_code != 200:
         return "Meals in all the preference selectef error", 403
+    topmeals = meals_response.json()
     
-    meals = meals_response.json()
-    return render_template('order.html', order_details=order_details, Topmeal=meals)
+    data = {}
+    
+    # send request to api http://localhost:5000/api/v1/preferences/76d6225d-f35e-11ee-862f-c8d9d2eb390e/meals
+    for pref_id in preferences:
+        preference_meals_response = requests.get(f'http://127.0.0.1:5000/api/v1/preferences/{pref_id}/meals')
+        if preference_meals_response.status_code != 200:
+            return "Preference Not found", 404
+        preference_obj = storage.get(Preference, pref_id)
+        data[preference_obj.name] = preference_meals_response.json()
+    
+    boxmeals = []
+    for order_meal in order.order_meals:
+        meal = storage.get(Meal, order_meal.meal_id)
+        for _ in range(order_meal.quantity):
+            boxmeals.append(meal)
+    
+    return render_template('order.html', order_details=order_details, Topmeal=topmeals, meal_details=meal_details, data=data, user=user, order_id=order_id,
+                           boxmeals=boxmeals)
 
 
 if __name__ == "__main__":
