@@ -94,30 +94,39 @@ nav ul li a img {
     justify-content: center;
     text-align: center;
     height: 30vh; /* Optionally, set height to fill the viewport */
-    line-height: 20px;
+    line-height: 35px;
 }
 .image-text1 {
     display: inline-block;
     font-weight: bold;
-    font-size: 26px;
+    font-size: 40px;
     margin-bottom: 10px;
 }
 .image-text2 {
     display: inline-block;
     font-weight: bold;
-    font-size: 26px;
+    font-size: 35px;
     margin-bottom: 10px;
 }
 .image-text3 {
     display: inline-block;
     font-weight: normal;
-    font-size: 12px;
+    font-size: 20px;
+    font-weight: normal;
 }
 .image-text4 {
     display: inline-block;
     font-weight: normal;
-    font-size: 12px;
+    font-size: 20px;
     margin-bottom: 20px;
+    font-weight: normal;
+}
+.container-button {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
 }
 .image-text5 {
     display: inline-block;
@@ -126,9 +135,11 @@ nav ul li a img {
     border: solid;
     border-color: #78af12;
     border-radius: 2px;
-    padding: 5px 10px;
-    position: relative;
+    padding: 10px 15px;
+    position: absolute;
     cursor: pointer;
+    top: 90px;
+    white-space: nowrap;
 }
 .scroll-down {
     position: absolute;
@@ -151,12 +162,13 @@ nav ul li a img {
     display: block;
     width: 100%;
     height: 100%;
-    background-image: url('img/back.png'); /* Replace 'path/to/your/image.jpg' with your image path */
+    background-image: url('img/banner33.jpeg'); /* Replace 'path/to/your/image.jpg' with your image path */
     background-size: cover;
     position: absolute;
     top: 0;
     left: 0;
     z-index: -1;
+    opacity: 60%;
   }
   .WhyNearshoreMeals {
     font-size: 32px;
@@ -482,4 +494,92 @@ div.inside-box p {
 }
 .plus {
     color: #84bd19;
+}
+.discount {
+    padding: 20px;
+    position: relative;
+    background-image: url('img/Hellofresh.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 360px;
+}
+.discount::before {
+    content: ""; /* Create a pseudo-element to overlay the gradient */
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: linear-gradient(rgba(218, 76, 76, 0.5), rgba(218, 86, 86, 0.5)); /* Adjust opacity as needed */
+}
+.fuck {
+    position: relative;
+    left: 400px;
+}
+.trapezoid p {
+    background-color: rgb(231, 166, 46);
+    display: inline-block;
+    padding: 10px 15px;
+    font-weight: bold;
+}
+
+.trapezoid {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.title-discount {
+    margin-top: 20px; /* Add some top margin for better spacing */
+}
+
+.title-discount p {
+    font-weight: bold;
+    font-size: 40px;
+    margin: 0;
+    color: white;
+}
+
+.description-discount {
+    margin-top: 10px; /* Add some top margin for better spacing */
+}
+
+.description-discount p {
+    font-style: italic;
+    font-size: 15px;
+    margin: 0;
+    color: white;
+}
+
+.get-discount {
+    margin-top: 20px; /* Add some top margin for better spacing */
+}
+
+.get-discount button {
+    padding: 10px 15px;
+    font-weight: bold;
+    background-color: orange;
+    border: none;
+    border-radius: 2px;
+}
+
+.price-discount {
+    margin-top: 5px; /* Add some top margin for better spacing */
+}
+
+.price-discount p {
+    font-size: 12px;
+    margin-left: 10px;
+    color: white;
+
+}
+.inside img {
+    width: 350px;
+    border: none;
+}
+.inside {
+    position: relative;
+    left: 380px;
+    bottom: 160px;
 }
