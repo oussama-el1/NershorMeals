@@ -516,6 +516,7 @@ div.inside-box p {
 .fuck {
     position: relative;
     left: 400px;
+    display: inline-block;
 }
 .trapezoid p {
     background-color: rgb(231, 166, 46);
@@ -532,6 +533,7 @@ div.inside-box p {
 
 .title-discount {
     margin-top: 20px; /* Add some top margin for better spacing */
+    display: inline-block;
 }
 
 .title-discount p {
@@ -579,6 +581,7 @@ div.inside-box p {
     border: none;
 }
 .inside {
+    display: inline-block;
     position: relative;
     left: 380px;
     bottom: 160px;
